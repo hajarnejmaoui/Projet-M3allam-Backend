@@ -56,17 +56,20 @@ public class ReservationController {
         StringBuilder factureDetails = new StringBuilder();
 
         // Détails du panier
-        factureDetails.append("Panier:\n");
+        factureDetails.append("Réservation n° : ").append(reservation.getId()).append("\n");
         for (PanierItem item : panier.getItems()) {  // Correction ici: appel à getItems() sur l'instance de Panier
-            factureDetails.append("Article: ").append(item.getArticle().getName())
+            factureDetails.append("Catégorie: ").append(item.getArticle().getCategory()).append("\n")
+                    .append("Articles: ").append("\n")
+                    .append(item.getArticle().getName())
                     .append(", Quantité: ").append(item.getQuantity())
                     .append(", Prix Unitaire: ").append(item.getArticle().getPrice())
-                    .append(", Total: ").append(item.getTotalPrice()).append("\n");
+                    .append(", Total HT de l'article : ").append(item.getTotalPrice()).append("\n");
         }
-        factureDetails.append("Prix Total du Panier: ").append(total).append("\n");
+        factureDetails.append("Total TTC: ").append(total).append("\n");
 
         // Détails de la réservation
-        factureDetails.append("Réservation:\n");
+        factureDetails.append("Des informations supplimentaire\n");
+        factureDetails.append("Mode de payement: Cash\n");
         factureDetails.append("Date: ").append(reservation.getDate()).append("\n");
         factureDetails.append("Heure: ").append(reservation.getTime()).append("\n");
         factureDetails.append("Adresse: ").append(reservation.getAddress()).append("\n");
